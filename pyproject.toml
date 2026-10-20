@@ -1,0 +1,30 @@
+[project]
+name = "fav2kb"
+version = "0.2.0"
+description = "把收藏夹沉淀为 agent 知识库（目前支持抖音收藏夹）"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+    "playwright>=1.48",     # 仅采集阶段（拉收藏列表）使用
+    "imageio-ffmpeg>=0.5",  # 自带 ffmpeg 二进制，免装系统 ffmpeg
+]
+
+[project.optional-dependencies]
+# 语音转写（可选）：sherpa-onnx + SenseVoice，纯 CPU，不依赖 torch
+# core 带 onnxruntime 等 DLL；部分 wheel 的依赖元数据不一致，需显式同版本声明，
+# 否则 Windows 上会误加载 System32 里的旧版 onnxruntime.dll 而崩溃
+asr = [
+    "sherpa-onnx==1.13.8",
+    "sherpa-onnx-core==1.13.8",
+    "numpy>=1.26",
+]
+
+[project.scripts]
+fav2kb = "fav2kb.__main__:main"
+
+[build-system]
+requires = ["uv_build>=0.8,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""

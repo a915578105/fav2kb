@@ -1,0 +1,13 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.python-version
+
+# 旧版本放在仓库内的数据（现已移到 ~/.fav2kb）
+.browser/
+raw/
+models/
+
+# 推广素材（不进开源仓库）
+promo/
